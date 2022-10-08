@@ -4,6 +4,8 @@ import colorama
 
 colorama.init()
 
+factor_100 = [1, 2, 4, 5, 10, 20, 25, 50, 100]
+
 color_ = {'BLACK': colorama.Fore.BLACK,
           'RED': colorama.Fore.RED,
           'GREEN': colorama.Fore.GREEN,
@@ -41,50 +43,79 @@ bg_color_ = {'BLACK': colorama.Back.BLACK,
           }
 
 
+def check_factor(size):
+    allow_bool = False
+    if size in factor_100:
+        allow_bool = True
+    return allow_bool
+
+
+def clear_console_line(char_limit):
+    """ clear n chars from console """
+
+    print(' '*char_limit, end='\r', flush=True)
+
+
 def pr_technical_data(technical_data):
     """ clears console line and then prints """
 
     print(technical_data, end='\r', flush=True)
 
 
-def progress_bar(part, whole, percent=True, color='', bg_color='', pre_append='', encapsule_l='', encapsule_r='', progress_char=''):
-    """ part=int, whole=int, color=str, pre_append=str, percent=bool, encapsule_l=str, encapsule_r=str, progress_char=str"""
+def progress_bar(part, whole, percent=True, color='', bg_color='', pre_append='', append='', encapsulate_l='', encapsulate_r='', progress_char='', size=100):
+    """
+    part=int, whole=int, percent=bool,
+    color=str, bg_color=str
+    pre_append=str, append=str,
+    encapsulate_l=str, encapsule_r=str,
+    progress_char=str,
+    size=int (factor of 100:  1, 2, 4, 5, 10, 20, 25, 50, and 100)
+    """
+    if size <= 50 or size == 100:
+        if check_factor(size) is True:
+            prc = int(int(size) * float((float(part) / whole)))
 
-    prc = int(100 * float((float(part) / whole)))
+            offset = int(prc * int((100 / size)))
 
-    if color and bg_color == '':
-        if percent is True:
-            pr_data = colorama.Style.BRIGHT + color_[color] + str(prc * progress_char) + colorama.Style.RESET_ALL
-        else:
-            pr_data = colorama.Style.BRIGHT + color_[color] + str(prc * progress_char) + colorama.Style.RESET_ALL
+            if color and bg_color == '':
+                if percent is True:
+                    pr_data = colorama.Style.BRIGHT + color_[color] + str(prc * progress_char) + colorama.Style.RESET_ALL
+                else:
+                    pr_data = colorama.Style.BRIGHT + color_[color] + str(prc * progress_char) + colorama.Style.RESET_ALL
 
-    elif color and bg_color:
-        if percent is True:
-            pr_data = bg_color_[bg_color] + colorama.Style.BRIGHT + color_[color] + str(prc * progress_char) + colorama.Style.RESET_ALL
-        else:
-            pr_data = bg_color_[bg_color] + colorama.Style.BRIGHT + color_[color] + str(prc * progress_char) + colorama.Style.RESET_ALL
+            elif color and bg_color:
+                if percent is True:
+                    pr_data = bg_color_[bg_color] + colorama.Style.BRIGHT + color_[color] + str(prc * progress_char) + colorama.Style.RESET_ALL
+                else:
+                    pr_data = bg_color_[bg_color] + colorama.Style.BRIGHT + color_[color] + str(prc * progress_char) + colorama.Style.RESET_ALL
 
-    elif bg_color and color == '':
-        if percent is True:
-            pr_data = bg_color_[bg_color] + str(prc * progress_char) + colorama.Style.RESET_ALL
-        else:
-            pr_data = bg_color_[bg_color] + str(prc * progress_char) + colorama.Style.RESET_ALL
+            elif bg_color and color == '':
+                if percent is True:
+                    pr_data = bg_color_[bg_color] + str(prc * progress_char) + colorama.Style.RESET_ALL
+                else:
+                    pr_data = bg_color_[bg_color] + str(prc * progress_char) + colorama.Style.RESET_ALL
+
+            else:
+                if percent is True:
+                    pr_data = str(prc * progress_char)
+                else:
+                    pr_data = str(prc * progress_char)
+
+            if encapsulate_l and encapsulate_r:
+                pr_data = encapsulate_l + pr_data + str(' ' * int(int(size)-prc)) + encapsulate_r
+            if percent is True:
+                pr_data = str(offset) + '% ' + pr_data
+
+            if pre_append:
+                pr_data = pre_append + pr_data
+            if append:
+                pr_data = pr_data + append
+                clear_console_line(char_limit=int(len(pr_data)))
+
+            pr_technical_data(technical_data=pr_data)
 
     else:
-        if percent is True:
-            pr_data = str(prc * progress_char)
-        else:
-            pr_data = str(prc * progress_char)
-
-    if encapsule_l and encapsule_r:
-        pr_data = encapsule_l + pr_data + str(' ' * int(100-prc)) + encapsule_r
-    if percent is True:
-        pr_data = str(prc) + '% ' + pr_data
-
-    if pre_append:
-        pr_data = pre_append + pr_data
-
-    pr_technical_data(technical_data=pr_data)
+        return False
 
 
 def display_color_options():
