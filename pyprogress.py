@@ -77,7 +77,7 @@ def progress_bar(part, whole, percent=True, color='', bg_color='', pre_append=''
             pr_data = str(prc * progress_char)
 
     if encapsule_l and encapsule_r:
-        pr_data = encapsule_l + pr_data + encapsule_r
+        pr_data = encapsule_l + pr_data + str(' ' * int(100-prc)) + encapsule_r
     if percent is True:
         pr_data = str(prc) + '% ' + pr_data
 
