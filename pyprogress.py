@@ -47,8 +47,8 @@ def pr_technical_data(technical_data):
     print(technical_data, end='\r', flush=True)
 
 
-def progress_bar(part, whole, color='', bg_color='', pre_append='', percent=True, encapsule_l='', encapsule_r='', progress_char=' '):
-    """ part=int, whole=int, color=str, pre_append=str, percent=bool """
+def progress_bar(part, whole, percent=True, color='', bg_color='', pre_append='', encapsule_l='', encapsule_r='', progress_char=''):
+    """ part=int, whole=int, color=str, pre_append=str, percent=bool, encapsule_l=str, encapsule_r=str, progress_char=str"""
 
     prc = int(100 * float((float(part) / whole)))
 

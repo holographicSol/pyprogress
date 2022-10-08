@@ -24,7 +24,8 @@ while part < whole:
                             whole=whole,
                             percent=True,
                             bg_color='WHITE',
-                            pre_append='[SEARCHING] ')
+                            pre_append='[SEARCHING] ',
+                            progress_char=' ')
 print('\n\n')
 
 print('Example 3:')
