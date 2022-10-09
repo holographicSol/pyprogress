@@ -43,9 +43,9 @@ bg_color_ = {'BLACK': colorama.Back.BLACK,
           }
 
 
-def check_factor(size):
+def check_factor(factor):
     allow_bool = False
-    if size in factor_100:
+    if factor in factor_100:
         allow_bool = True
     return allow_bool
 
@@ -62,7 +62,7 @@ def pr_technical_data(technical_data):
     print(technical_data, end='\r', flush=True)
 
 
-def progress_bar(part, whole, percent=True, color='', bg_color='', encapsulate_l_color='', encapsulate_r_color='', pre_append='', append='', encapsulate_l='', encapsulate_r='', progress_char='', size=100):
+def progress_bar(part, whole, percent=True, color='', bg_color='', encapsulate_l_color='', encapsulate_r_color='', pre_append='', append='', encapsulate_l='', encapsulate_r='', progress_char='', factor=100):
     """
     part=int, whole=int, percent=bool,
     color=str, bg_color=str
@@ -71,14 +71,42 @@ def progress_bar(part, whole, percent=True, color='', bg_color='', encapsulate_l
     pre_append=str, append=str,
     encapsulate_l=str, encapsulate_r=str,
     progress_char=str,
-    size=int (factor of 100:  1, 2, 4, 5, 10, 20, 25, 50, and 100)
+    factor=int (factor of 100:  1, 2, 4, 5, 10, 20, 25, 50, and 100)
 
     Note: extremely customizable. The only required values are part=int and whole=int. Set other values as desired/necessary.
-    """
-    if check_factor(size) is True:
-        prc = int(int(size) * float((float(part) / whole)))
 
-        offset = int(prc * int((100 / size)))
+    factor_100 = [1, 2, 4, 5, 10, 20, 25, 50, 100]
+
+    Use a factors inverse factor as a multiplier for an offset percentage independent of the progress bar.
+        Example: if factor=100 then multiplier=1
+        Example: factor=10 then multiplier=10 (has no opposing factor because 10 is in the middle).
+
+    """
+
+    if check_factor(factor) is True:
+        prc = int(int(factor) * float((float(part) / whole)))
+
+        if factor == 100:
+            multiplier = 1
+        elif factor == 50:
+            multiplier = 2
+        elif factor == 25:
+            multiplier = 4
+        elif factor == 20:
+            multiplier = 5
+        elif factor == 10:
+            multiplier = 10
+        elif factor == 5:
+            multiplier = 20
+        elif factor == 4:
+            multiplier = 25
+        elif factor == 2:
+            multiplier = 50
+        elif factor == 1:
+            multiplier = 100
+
+        offset = float(int(factor) * float((float(part) / whole))) * multiplier
+        offset = int(offset)
 
         if color and bg_color == '':
             if percent is True:
@@ -106,9 +134,9 @@ def progress_bar(part, whole, percent=True, color='', bg_color='', encapsulate_l
 
         if encapsulate_l and encapsulate_r:
             if encapsulate_l_color and encapsulate_r_color:
-                pr_data = color_[encapsulate_l_color] + encapsulate_l + colorama.Style.RESET_ALL + pr_data + str(' ' * int(int(size) - prc)) + color_[encapsulate_r_color] + encapsulate_r + colorama.Style.RESET_ALL
+                pr_data = color_[encapsulate_l_color] + encapsulate_l + colorama.Style.RESET_ALL + pr_data + str(' ' * int(int(factor) - prc)) + color_[encapsulate_r_color] + encapsulate_r + colorama.Style.RESET_ALL
             else:
-                pr_data = encapsulate_l + pr_data + str(' ' * int(int(size)-prc)) + encapsulate_r
+                pr_data = encapsulate_l + pr_data + str(' ' * int(int(factor)-prc)) + encapsulate_r
         if percent is True:
             pr_data = str(offset) + '% ' + pr_data
 

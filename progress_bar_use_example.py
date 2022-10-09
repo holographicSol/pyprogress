@@ -8,7 +8,7 @@ while part < whole:
     part += 1
     pyprogress.progress_bar(part=part,
                             whole=whole,
-                            size=5)
+                            factor=5)
 print('\n\n')
 
 print('\nExample:')
@@ -24,7 +24,7 @@ while part < whole:
                             encapsulate_l='[',
                             encapsulate_r=']',
                             progress_char='_',
-                            size=10)
+                            factor=10)
 print('\n\n')
 
 print('Example:')
@@ -38,7 +38,7 @@ while part < whole:
                             bg_color='WHITE',
                             pre_append='[SEARCHING] ',
                             progress_char=' ',
-                            size=20)
+                            factor=20)
 print('\n\n')
 
 print('Example:')
@@ -52,7 +52,7 @@ while part < whole:
                             color='CYAN',
                             pre_append='[PROGRESS] ',
                             progress_char='|',
-                            size=25)
+                            factor=25)
 print('\n\n')
 
 print('Example:')
@@ -70,7 +70,7 @@ while part < whole:
                             encapsulate_r='|',
                             encapsulate_l_color='LIGHTMAGENTA_EX',
                             encapsulate_r_color='LIGHTMAGENTA_EX',
-                            size=50)
+                            factor=50)
 print('\n\n')
 
 print('Example:')
@@ -88,7 +88,7 @@ while part < whole:
                             encapsulate_r='|',
                             encapsulate_l_color='LIGHTBLUE_EX',
                             encapsulate_r_color='LIGHTBLUE_EX',
-                            size=50)
+                            factor=50)
 print('\n\n')
 
 print('Example:')
@@ -106,7 +106,7 @@ while part < whole:
                             encapsulate_r='|',
                             encapsulate_l_color='LIGHTCYAN_EX',
                             encapsulate_r_color='LIGHTCYAN_EX',
-                            size=50)
+                            factor=50)
 print('\n\n')
 
 print('Example:')
@@ -120,7 +120,7 @@ while part < whole:
                             color='YELLOW',
                             pre_append='[PROGRESS] ',
                             progress_char='_',
-                            size=100,
+                            factor=100,
                             encapsulate_l='<',
                             encapsulate_r='>',
                             append=str(' ' + str(part)))
@@ -142,11 +142,11 @@ while part < whole:
         bg_i = 0
     pyprogress.progress_bar(part=part,
                             whole=whole,
-                            percent=False,
+                            percent=True,
                             bg_color=bg,
                             pre_append='[PROGRESS NEON FLASH] ',
                             progress_char=' ',
-                            size=100,
+                            factor=100,
                             encapsulate_l='|',
                             encapsulate_r='|',
                             append=str(' ' + str(part)))
