@@ -2,7 +2,7 @@ import pyprogress
 
 print('\n\n')
 print('Example:')
-whole = 1000
+whole = 10000
 part = 0
 while part < whole:
     part += 1
@@ -19,15 +19,18 @@ while part < whole:
     pyprogress.progress_bar(part=part,
                             whole=whole,
                             percent=True,
-                            color='MAGENTA',
+                            color='BLACK',
                             pre_append='[DOWNLOADING] ',
-                            encapsulate_l='[',
-                            encapsulate_r=']',
+                            encapsulate_l='▲',
+                            encapsulate_r='▲',
+                            encapsulate_l_color='BLUE',
+                            encapsulate_r_color='BLUE',
                             progress_char='_',
-                            factor=10)
+                            factor=5,
+                            )
 print('\n\n')
 
-print('Example:')
+print('\nExample:')
 whole = 1000
 part = 0
 while part < whole:
@@ -35,14 +38,32 @@ while part < whole:
     pyprogress.progress_bar(part=part,
                             whole=whole,
                             percent=True,
-                            bg_color='WHITE',
-                            pre_append='[SEARCHING] ',
-                            progress_char=' ',
-                            factor=20)
+                            color='MAGENTA',
+                            pre_append='[REPLICATING] ',
+                            encapsulate_l='[',
+                            encapsulate_r=']',
+                            progress_char='_',
+                            factor=10,
+                            )
 print('\n\n')
 
 print('Example:')
-whole = 1000
+whole = 10000
+part = 0
+while part < whole:
+    part += 1
+    pyprogress.progress_bar(part=part,
+                            whole=whole,
+                            percent=False,
+                            bg_color='WHITE',
+                            pre_append='[SEARCHING] ',
+                            progress_char=' ',
+                            factor=20,
+                            )
+print('\n\n')
+
+print('Example:')
+whole = 10000
 part = 0
 while part < whole:
     part += 1
@@ -50,9 +71,10 @@ while part < whole:
                             whole=whole,
                             percent=True,
                             color='CYAN',
-                            pre_append='[PROGRESS] ',
+                            pre_append='[CLONING] ',
                             progress_char='|',
-                            factor=25)
+                            factor=25,
+                            )
 print('\n\n')
 
 print('Example:')
@@ -70,7 +92,8 @@ while part < whole:
                             encapsulate_r='|',
                             encapsulate_l_color='LIGHTMAGENTA_EX',
                             encapsulate_r_color='LIGHTMAGENTA_EX',
-                            factor=50)
+                            factor=50,
+                            )
 print('\n\n')
 
 print('Example:')
@@ -81,14 +104,15 @@ while part < whole:
     pyprogress.progress_bar(part=part,
                             whole=whole,
                             percent=True,
-                            bg_color='GREEN',
-                            pre_append='[PROGRESS] ',
+                            bg_color='LIGHTMAGENTA_EX',
+                            pre_append='[EXTRACTING] ',
                             progress_char=' ',
                             encapsulate_l='|',
                             encapsulate_r='|',
                             encapsulate_l_color='LIGHTBLUE_EX',
                             encapsulate_r_color='LIGHTBLUE_EX',
-                            factor=50)
+                            factor=50,
+                            )
 print('\n\n')
 
 print('Example:')
@@ -99,31 +123,14 @@ while part < whole:
     pyprogress.progress_bar(part=part,
                             whole=whole,
                             percent=True,
-                            bg_color='GREEN',
-                            pre_append='[PROGRESS] ',
+                            bg_color='RED',
+                            pre_append='[SELF DESTRUCT SEQUENCE] ',
                             progress_char=' ',
                             encapsulate_l='|',
                             encapsulate_r='|',
                             encapsulate_l_color='LIGHTCYAN_EX',
                             encapsulate_r_color='LIGHTCYAN_EX',
                             factor=50)
-print('\n\n')
-
-print('Example:')
-whole = 1000
-part = 0
-while part < whole:
-    part += 1
-    pyprogress.progress_bar(part=part,
-                            whole=whole,
-                            percent=False,
-                            color='YELLOW',
-                            pre_append='[PROGRESS] ',
-                            progress_char='_',
-                            factor=100,
-                            encapsulate_l='<',
-                            encapsulate_r='>',
-                            append=str(' ' + str(part)))
 print('\n\n')
 
 print('Example :')
@@ -144,7 +151,7 @@ while part < whole:
                             whole=whole,
                             percent=True,
                             bg_color=bg,
-                            pre_append='[PROGRESS NEON FLASH] ',
+                            pre_append='[INITIATING WARP DRIVE] ',
                             progress_char=' ',
                             factor=100,
                             encapsulate_l='|',
