@@ -62,14 +62,18 @@ def pr_technical_data(technical_data):
     print(technical_data, end='\r', flush=True)
 
 
-def progress_bar(part, whole, percent=True, color='', bg_color='', pre_append='', append='', encapsulate_l='', encapsulate_r='', progress_char='', size=100):
+def progress_bar(part, whole, percent=True, color='', bg_color='', encapsulate_l_color='', encapsulate_r_color='', pre_append='', append='', encapsulate_l='', encapsulate_r='', progress_char='', size=100):
     """
     part=int, whole=int, percent=bool,
     color=str, bg_color=str
+    encapsulate_l_color=str
+    encapsulate_r_color=str
     pre_append=str, append=str,
-    encapsulate_l=str, encapsule_r=str,
+    encapsulate_l=str, encapsulate_r=str,
     progress_char=str,
     size=int (factor of 100:  1, 2, 4, 5, 10, 20, 25, 50, and 100)
+
+    Note: extremely customizable. The only required values are part=int and whole=int. Set other values as desired/necessary.
     """
     if check_factor(size) is True:
         prc = int(int(size) * float((float(part) / whole)))
@@ -101,7 +105,10 @@ def progress_bar(part, whole, percent=True, color='', bg_color='', pre_append=''
                 pr_data = str(prc * progress_char)
 
         if encapsulate_l and encapsulate_r:
-            pr_data = encapsulate_l + pr_data + str(' ' * int(int(size)-prc)) + encapsulate_r
+            if encapsulate_l_color and encapsulate_r_color:
+                pr_data = color_[encapsulate_l_color] + encapsulate_l + colorama.Style.RESET_ALL + pr_data + str(' ' * int(int(size) - prc)) + color_[encapsulate_r_color] + encapsulate_r + colorama.Style.RESET_ALL
+            else:
+                pr_data = encapsulate_l + pr_data + str(' ' * int(int(size)-prc)) + encapsulate_r
         if percent is True:
             pr_data = str(offset) + '% ' + pr_data
 
@@ -109,7 +116,8 @@ def progress_bar(part, whole, percent=True, color='', bg_color='', pre_append=''
             pr_data = pre_append + pr_data
         if append:
             pr_data = pr_data + append
-            clear_console_line(char_limit=int(len(pr_data)))
+
+        clear_console_line(char_limit=int(len(pr_data)))
 
         pr_technical_data(technical_data=pr_data)
 
