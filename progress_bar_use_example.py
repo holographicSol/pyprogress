@@ -150,7 +150,7 @@ while part < whole:
 print('\n\n')
 
 print('Example :')
-whole = 100
+whole = 10000
 part = 0
 bg_i = 0
 multiplier = pyprogress.multiplier_from_inverse_factor(factor=100)
