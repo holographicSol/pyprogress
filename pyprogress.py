@@ -50,6 +50,17 @@ def check_factor(factor):
     return allow_bool
 
 
+def multiplier_from_inverse_factor(factor):
+    i = 0
+    inverse_factor_100 = factor_100[::-1]
+
+    for _ in factor_100:
+        if _ == factor:
+            multiplier = inverse_factor_100[i]
+        i += 1
+    return multiplier
+
+
 def clear_console_line(char_limit):
     """ clear n chars from console """
 
@@ -62,7 +73,9 @@ def pr_technical_data(technical_data):
     print(technical_data, end='\r', flush=True)
 
 
-def progress_bar(part, whole, percent=True, color='', bg_color='', encapsulate_l_color='', encapsulate_r_color='', pre_append='', append='', encapsulate_l='', encapsulate_r='', progress_char='', factor=100):
+def progress_bar(part, whole, percent=True, color='', bg_color='', encapsulate_l_color='', encapsulate_r_color='',
+                 pre_append='', append='', encapsulate_l='', encapsulate_r='', progress_char='', factor=100,
+                 percent_type=int, multiplier=1):
     """
     part=int, whole=int, percent=bool,
     color=str, bg_color=str
@@ -81,32 +94,17 @@ def progress_bar(part, whole, percent=True, color='', bg_color='', encapsulate_l
         Example: if factor=100 then multiplier=1
         Example: factor=10 then multiplier=10 (has no opposing factor because 10 is in the middle).
 
+        % 1: progress bar displayed
+        % 2: digits displayed
+
     """
 
     if check_factor(factor) is True:
         prc = int(int(factor) * float((float(part) / whole)))
 
-        if factor == 100:
-            multiplier = 1
-        elif factor == 50:
-            multiplier = 2
-        elif factor == 25:
-            multiplier = 4
-        elif factor == 20:
-            multiplier = 5
-        elif factor == 10:
-            multiplier = 10
-        elif factor == 5:
-            multiplier = 20
-        elif factor == 4:
-            multiplier = 25
-        elif factor == 2:
-            multiplier = 50
-        elif factor == 1:
-            multiplier = 100
-
         offset = float(int(factor) * float((float(part) / whole))) * multiplier
-        offset = int(offset)
+        if percent_type == int:
+            offset = int(offset)
 
         if color and bg_color == '':
             if percent is True:

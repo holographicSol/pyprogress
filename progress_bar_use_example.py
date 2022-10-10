@@ -4,16 +4,19 @@ print('\n\n')
 print('Example:')
 whole = 10000
 part = 0
+multiplier = pyprogress.multiplier_from_inverse_factor(factor=5)
 while part < whole:
     part += 1
     pyprogress.progress_bar(part=part,
                             whole=whole,
-                            factor=5)
+                            factor=5,
+                            multiplier=multiplier)
 print('\n\n')
 
 print('\nExample:')
 whole = 1000
 part = 0
+multiplier = pyprogress.multiplier_from_inverse_factor(factor=5)
 while part < whole:
     part += 1
     pyprogress.progress_bar(part=part,
@@ -27,12 +30,14 @@ while part < whole:
                             encapsulate_r_color='BLUE',
                             progress_char='_',
                             factor=5,
+                            multiplier=multiplier
                             )
 print('\n\n')
 
 print('\nExample:')
 whole = 1000
 part = 0
+multiplier = pyprogress.multiplier_from_inverse_factor(factor=10)
 while part < whole:
     part += 1
     pyprogress.progress_bar(part=part,
@@ -44,12 +49,14 @@ while part < whole:
                             encapsulate_r=']',
                             progress_char='_',
                             factor=10,
+                            multiplier=multiplier
                             )
 print('\n\n')
 
 print('Example:')
 whole = 10000
 part = 0
+multiplier = pyprogress.multiplier_from_inverse_factor(factor=20)
 while part < whole:
     part += 1
     pyprogress.progress_bar(part=part,
@@ -59,12 +66,14 @@ while part < whole:
                             pre_append='[SEARCHING] ',
                             progress_char=' ',
                             factor=20,
+                            multiplier=multiplier
                             )
 print('\n\n')
 
 print('Example:')
-whole = 10000
+whole = 100
 part = 0
+multiplier = pyprogress.multiplier_from_inverse_factor(factor=25)
 while part < whole:
     part += 1
     pyprogress.progress_bar(part=part,
@@ -74,12 +83,14 @@ while part < whole:
                             pre_append='[CLONING] ',
                             progress_char='|',
                             factor=25,
+                            multiplier=multiplier
                             )
 print('\n\n')
 
 print('Example:')
-whole = 1000
+whole = 100
 part = 0
+multiplier = pyprogress.multiplier_from_inverse_factor(factor=50)
 while part < whole:
     part += 1
     pyprogress.progress_bar(part=part,
@@ -93,12 +104,14 @@ while part < whole:
                             encapsulate_l_color='LIGHTMAGENTA_EX',
                             encapsulate_r_color='LIGHTMAGENTA_EX',
                             factor=50,
+                            multiplier=multiplier
                             )
 print('\n\n')
 
 print('Example:')
-whole = 1000
+whole = 100
 part = 0
+multiplier = pyprogress.multiplier_from_inverse_factor(factor=50)
 while part < whole:
     part += 1
     pyprogress.progress_bar(part=part,
@@ -112,12 +125,14 @@ while part < whole:
                             encapsulate_l_color='LIGHTBLUE_EX',
                             encapsulate_r_color='LIGHTBLUE_EX',
                             factor=50,
+                            multiplier=multiplier
                             )
 print('\n\n')
 
 print('Example:')
-whole = 1000
+whole = 100
 part = 0
+multiplier = pyprogress.multiplier_from_inverse_factor(factor=50)
 while part < whole:
     part += 1
     pyprogress.progress_bar(part=part,
@@ -130,13 +145,15 @@ while part < whole:
                             encapsulate_r='|',
                             encapsulate_l_color='LIGHTCYAN_EX',
                             encapsulate_r_color='LIGHTCYAN_EX',
-                            factor=50)
+                            factor=50,
+                            multiplier=multiplier)
 print('\n\n')
 
 print('Example :')
-whole = 10000
+whole = 100
 part = 0
 bg_i = 0
+multiplier = pyprogress.multiplier_from_inverse_factor(factor=100)
 while part < whole:
     part += 1
 
@@ -156,6 +173,7 @@ while part < whole:
                             factor=100,
                             encapsulate_l='|',
                             encapsulate_r='|',
-                            append=str(' ' + str(part)))
+                            append=str(' ' + str(part)),
+                            multiplier=multiplier)
     bg_i += 1
 print('\n\n')
