@@ -4,6 +4,9 @@ import colorama
 
 colorama.init()
 
+pr_data_prev = ''
+pr_data_prev_2 = ''
+
 i_char_progress = 0
 
 spin_a = ['  |  ', '  /  ', '  -  ']
@@ -87,16 +90,16 @@ def multiplier_from_inverse_factor(factor):
     return multiplier
 
 
-def clear_console_line(char_limit):
+def clear_console_line(char_limit=int, _end=''):
     """ clear n chars from console """
 
-    print(' '*char_limit, end='\r', flush=True)
+    print(' '*char_limit, end=_end, flush=True)
 
 
-def pr_technical_data(technical_data=''):
+def pr_technical_data(technical_data='', _end=str):
     """ clears console line and then prints """
 
-    print(technical_data, end='\r', flush=True)
+    print(technical_data, end=_end, flush=True)
 
 
 def progress_bar(n_progress_bar=1,
@@ -137,6 +140,7 @@ def progress_bar(n_progress_bar=1,
         2. call this function.
 
     """
+    global pr_data_prev, pr_data_prev_2
     pr_data = ''
     pr_data_2 = ''
     if n_progress_bar == 1 or n_progress_bar == 2:
@@ -237,13 +241,15 @@ def progress_bar(n_progress_bar=1,
                 pr_data_2 = pr_data_2 + append_2
 
     if n_progress_bar == 1:
-        if append:
-            clear_console_line(char_limit=int(len(pr_data)))
-        pr_technical_data(technical_data=pr_data)
+        if pr_data != pr_data_prev:
+            pr_data_prev = pr_data
+            if append:
+                clear_console_line(char_limit=int(len(pr_data)), _end='\r')
+            pr_technical_data(technical_data=pr_data, _end='\r')
     elif n_progress_bar == 2:
         if append_2:
-            clear_console_line(char_limit=int(len(pr_data)) + int(len(n_progress_space_char)) + int(len(pr_data_2)))
-        pr_technical_data(technical_data=str(pr_data + n_progress_space_char + pr_data_2))
+            clear_console_line(char_limit=int(len(pr_data)) + int(len(n_progress_space_char)) + int(len(pr_data_2)), _end='\r')
+        pr_technical_data(technical_data=str(pr_data + n_progress_space_char + pr_data_2), _end='\r')
 
 
 def display_progress_unknown(str_progress='', progress_list=[], color='', str_pre_append='', str_append=''):
